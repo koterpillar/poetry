@@ -115,7 +115,7 @@ class Factory(BaseFactory):
                     io.write_line("A mirror exists for PyPI in the config, using it.")
                 # Often, a PyPI mirror only has a "simple" index, without other APIs.
                 # Here we use LegacyRepository instead of PyPiRepository.
-                pypi_repository = LegacyRepository("PyPI", pypi_mirror_url, mirror=True)
+                pypi_repository = LegacyRepository("PyPI", pypi_mirror_url, mirror=True, config=config)
             else:
                 pypi_repository = PyPiRepository()
             poetry.pool.add_repository(pypi_repository, not has_sources, has_sources)
