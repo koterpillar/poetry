@@ -147,9 +147,11 @@ class Authenticator(object):
             if not repository_config:
                 continue
 
-            url = repository_config.get("url")
+            url = repository_config.get("mirror", {}).get("url")
             if not url:
-                continue
+                url = repository_config.get("url")
+                if not url:
+                    continue
 
             parsed_url = urllib.parse.urlsplit(url)
 
